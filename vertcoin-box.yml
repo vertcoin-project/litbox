@@ -1,0 +1,21 @@
+version: "2"
+services:
+
+  vertcoin-box-lit:
+    image: lit
+    restart: always
+    expose:
+      - "8001"
+    volumes:
+      - ./data/lit:/root/.lit
+
+  vertcoin-box-tunnel:
+    image: vertcoin-box-tunnel
+    restart: always
+    ports:
+      - "42924:22"
+
+networks:    
+  default:
+    external:
+      name: vertcoinbox-network
