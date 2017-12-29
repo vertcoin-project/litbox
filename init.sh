@@ -9,7 +9,7 @@ ssh-keygen -t rsa -N "" -f ./vertcoin-box-admin.key
 docker build . -t vertcoin-box-admin
 
 cd /tmp/vertcoin-box/vertcoin-box-tunnel
-cp ../vertcoin-box-admin/vertcoin-box-admin.key .
+cp ../vertcoin-box-admin/vertcoin-box-admin.key.pub .
 docker build . -t vertcoin-box-tunnel
 
 mkdir -p /usr/local/vertcoin-box
