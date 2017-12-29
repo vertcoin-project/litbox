@@ -15,6 +15,12 @@ services:
     ports:
       - "42924:22"
 
+  vertcoin-box-admin:
+    image: vertcoin-box-admin
+    restart: always
+    expose:
+      - "80"
+
 networks:    
   default:
     external:
