@@ -1,4 +1,5 @@
 #!/bin/sh
+rm -rf /tmp/vertcoin-box
 mkdir -p /tmp/vertcoin-box
 cd /tmp/vertcoin-box
 git clone --depth 1 https://github.com/gertjaap/vertcoin-box
