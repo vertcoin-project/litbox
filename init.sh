@@ -19,4 +19,3 @@ mkdir -p /usr/local/vertcoin-box/data/lit
 
 cd /usr/local/vertcoin-box
 docker-compose -f vertcoin-box.yml up -d
-1
