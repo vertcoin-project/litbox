@@ -16,3 +16,7 @@ docker build . -t vertcoin-box-tunnel
 mkdir -p /usr/local/vertcoin-box
 cp -R /tmp/vertcoin-box/vertcoin-box/* /usr/local/vertcoin-box 
 mkdir -p /usr/local/vertcoin-box/data/lit
+
+cd /usr/local/vertcoin-box
+docker-compose -f vertcoin-box.yml up -d
+1
