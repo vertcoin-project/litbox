@@ -4,7 +4,7 @@ var id = 1;
 
 module.exports = {};
 module.exports.connect = function() {
-    var host = process.env.LIT_HOST || 'vertcoin-box-lit';
+    var host = process.env.LIT_HOST || 'litbox-lit';
     console.log("Connecting to " + host);
     
     var ws = new WebSocket('ws://' + host + ':8001/ws', { origin: 'http://localhost' });

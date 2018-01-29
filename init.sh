@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # create data directory for lit
 mkdir -p /usr/local/litbox/data/lit
 
@@ -18,5 +19,8 @@ mv /usr/local/litbox/data/secrets/litbox-admin.key.pub /usr/local/litbox/data/ke
 hexdump -n 32 -e '8/4 "%08x"' /dev/random > /usr/local/litbox/data/lit/privkey.hex
 
 cd /usr/local/litbox
+curl -o docker-compose.yml https://raw.githubusercontent.com/gertjaap/litbox/master/docker-compose.yml
+
+docker network create litbox-network
 
 docker-compose up -d

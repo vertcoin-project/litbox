@@ -13,9 +13,9 @@ module.exports.checkTunnel = function(callback) {
       }).on('error', function(err) {
         callback(err, false);
       }).connect({
-        host: 'vertcoin-box-tunnel',
+        host: 'litbox-tunnel',
         port: 22,
         username: 'root',
-        privateKey: fs.readFileSync(path.join(__dirname,'vertcoin-box-admin.key'))
+        privateKey: fs.readFileSync(path.join('/root/secrets/litbox-admin.key'))
       });
 }
