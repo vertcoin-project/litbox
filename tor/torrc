@@ -1,0 +1,3 @@
+HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServicePort 49222 litbox-tunnel:22
+HiddenServicePort 49280 litbox-admin:3001

@@ -29,6 +29,14 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+var pairApp = require('../pairing');
+var pairPort = normalizePort(process.env.PAIR_PORT || '3001');
+pairApp.set('port', pairPort);
+var pairServer = http.createServer(pairApp);
+pairServer.listen(pairPort);
+pairServer.on('error', onError);
+pairServer.on('listening', onListening);
+
 /**
  * Normalize a port into a number, string, or false.
  */

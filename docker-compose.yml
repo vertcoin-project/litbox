@@ -12,8 +12,8 @@ services:
   litbox-tunnel:
     image: litbox-tunnel
     restart: always
-    ports:
-      - "42924:22"
+    expose: 
+      - "22"
     volumes:
       - ./data/keys:/root/keys
 
@@ -26,6 +26,14 @@ services:
       - "80:3000"
     volumes:
       - ./data/secrets:/root/secrets 
+
+  litbox-tor:
+    image: litbox-tor
+    depends_on:
+      - litbox-tunnel
+    volumes:
+      - ./data/tor/:/var/lib/tor/hidden_service/
+        
 
 networks:    
   default:
