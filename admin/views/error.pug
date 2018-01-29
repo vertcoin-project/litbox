@@ -1,0 +1,7 @@
+extends ../node_modules/pug-bootstrap/layouts/starter
+append styles
+	link(href="/css/style.css", rel="stylesheet")
+block body
+	h1= message
+	h2= error.status
+	pre #{error.stack}

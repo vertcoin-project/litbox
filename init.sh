@@ -1,22 +1,22 @@
 #!/bin/sh
-rm -rf /tmp/vertcoin-box
-mkdir -p /tmp/vertcoin-box
-cd /tmp/vertcoin-box
-git clone --depth 1 https://github.com/gertjaap/vertcoin-box
-git clone --depth 1 https://github.com/gertjaap/vertcoin-box-tunnel
-git clone --depth 1 https://github.com/gertjaap/vertcoin-box-admin
-cd /tmp/vertcoin-box/vertcoin-box-admin
-ssh-keygen -t rsa -N "" -f ./vertcoin-box-admin.key
-docker build . -t vertcoin-box-admin
+# create data directory for lit
+mkdir -p /usr/local/litbox/data/lit
 
-cd /tmp/vertcoin-box/vertcoin-box-tunnel
-cp ../vertcoin-box-admin/vertcoin-box-admin.key.pub .
-docker build . -t vertcoin-box-tunnel
+# create directory containing private keys
+mkdir -p /usr/local/litbox/data/secrets
 
-mkdir -p /usr/local/vertcoin-box
-cp -R /tmp/vertcoin-box/vertcoin-box/* /usr/local/vertcoin-box 
-mkdir -p /usr/local/vertcoin-box/data/lit
-hexdump -n 32 -e '8/4 "%08x"' /dev/random > /usr/local/vertcoin-box/data/lit/privkey.hex
+# create directory containing public keys
+mkdir -p /usr/local/litbox/data/keys
 
-cd /usr/local/vertcoin-box
-docker-compose -f vertcoin-box.yml up -d
+# generate SSH private key for the Admin box to connect to the Tunnel box
+ssh-keygen -t rsa -N "" -f /usr/local/litbox/data/secrets/litbox-admin.key
+
+# include the public key for the admin box SSH key into the list of allowed SSH keys (this directory is merged into authorized_keys on startup of the tunnel box)
+mv /usr/local/litbox/data/secrets/litbox-admin.key.pub /usr/local/litbox/data/keys 
+
+# generate a new private key for LIT 
+hexdump -n 32 -e '8/4 "%08x"' /dev/random > /usr/local/litbox/data/lit/privkey.hex
+
+cd /usr/local/litbox
+
+docker-compose up -d

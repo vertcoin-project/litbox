@@ -1,0 +1,7 @@
+extends layout
+
+append body
+	.container
+		h1 Status
+		p SSH Tunnel Operational: #{tunnelStatus} #{tunnelError}
+		p LIT Operational: #{litStatus} #{litError}

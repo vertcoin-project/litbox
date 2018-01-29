@@ -1,7 +1,7 @@
 version: "2"
 services:
 
-  vertcoin-box-lit:
+  litbox-lit:
     image: lit
     restart: always
     expose:
@@ -9,21 +9,25 @@ services:
     volumes:
       - ./data/lit:/root/.lit
 
-  vertcoin-box-tunnel:
-    image: vertcoin-box-tunnel
+  litbox-tunnel:
+    image: litbox-tunnel
     restart: always
     ports:
       - "42924:22"
+    volumes:
+      - ./data/keys:/root/keys
 
-  vertcoin-box-admin:
-    image: vertcoin-box-admin
+  litbox-admin:
+    image: litbox-admin
     restart: always
     expose:
       - "3000"
     ports:
       - "80:3000"
+    volumes:
+      - ./data/secrets:/root/secrets 
 
 networks:    
   default:
     external:
-      name: vertcoinbox-network
+      name: litbox-network
