@@ -25,7 +25,8 @@ services:
     ports:
       - "80:3000"
     volumes:
-      - ./data/secrets:/root/secrets 
+      - ./data/secrets:/root/secrets
+      - ./data/tor:/root/tor
 
   litbox-tor:
     image: litbox-tor
