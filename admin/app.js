@@ -10,6 +10,7 @@ var hash = require('pbkdf2-password')()
 var index = require('./routes/index');
 var auth = require('./routes/auth');
 var status = require('./routes/status');
+var pair = require('./routes/pair');
 
 var app = express();
 
@@ -36,6 +37,11 @@ if(!fs.existsSync(path.join(__dirname, 'admin_password'))) {
   });
 }
 
+// Create directory for storing pairing requests
+if(!fs.existsSync(path.join(__dirname, 'pairingRequests'))) {
+  fs.mkdirSync(path.join(__dirname, 'pairingRequests'));
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -51,6 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/status', status);
+app.use('/pair', pair);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,5 +76,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

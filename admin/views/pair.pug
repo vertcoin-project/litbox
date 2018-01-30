@@ -1,0 +1,14 @@
+extends layout
+
+append body
+    .container
+        h1 Pair new device
+        p Using the information on this page you can pair a new device with your Litbox. Make sure you complete the procedure within the next 5 minutes. If you fail to do so, you can refresh this page and start over.
+        div.col-xs-12.col-md-6
+            h2 Pairing mobile device
+            p You can pair the litbox mobile client by scanning the QR Code below.
+            img(src=qrfile)
+        div.col-xs-12.col-md-6
+            h2 Pairing desktop 
+            p You can pair a desktop client by downloading the file below and use it in the pairing procedure.
+            a(href=pairfile target="_blank") Download Pair File
