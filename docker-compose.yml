@@ -29,6 +29,17 @@ services:
       - ./data/tor:/root/tor
       - ./data/keys:/root/keys
 
+  litbox-admin-go:
+    image: litbox-admin-go
+    restart: always
+    expose:
+      - "3000"
+    ports:
+      - "81:3000"
+    volumes:
+      - ./data/secrets:/root/secrets
+      - ./data/tor:/root/tor
+
   litbox-tor:
     image: litbox-tor
     depends_on:
