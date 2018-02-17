@@ -39,6 +39,7 @@ services:
     volumes:
       - ./data/secrets:/root/secrets
       - ./data/tor:/root/tor
+      - ./data/keys:/root/keys
 
   litbox-tor:
     image: litbox-tor
